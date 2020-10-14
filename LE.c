@@ -131,7 +131,7 @@ void *escritor(void *p){
 	sem_wait(&mutex1);
 	wc++;
 
-	//Si hay lector espera a que termine
+	//Si hay escritor espera a que termine
 	if(wc == 1)
 	sem_wait(&rdb);
 
@@ -153,13 +153,13 @@ void *lector(void *p){
 
 	//Saber cual es el lector por su ID
 	int *id_le;
-    id_le=(int *)p;	
+    	id_le=(int *)p;	
 
 	sem_wait(&rdb);
 	sem_wait(&mutex2);
 	rc++;
 	
-	//Si hay escritor espera a que termine
+	//Si hay lector espera a que termine
 	if(rc == 1)
 	sem_wait(&wdb);
 
